@@ -27,6 +27,27 @@ This project involves the segmentation and tracking of the optical beads under t
 - so the cropped image dimensions are 400 x 425 ( rows x columns), and this gives the cropped image.
 - Total image dimension is 400 x 425.
 
+
+
+- Now use a existing folder to read all the tiff files and then pass it to the model for prediction.
+- Save these masks after passing the images to the model and save the output masks in a seperate folder
+
+- Cropping limits for the images in dirnum = 1 
+    - (3, 689, 398, 1020)
+    - (minX, maxX, minY, maxY) = (3, 689, 398, 1020)
+- Cropping limits for the images in dirnum  = 2, 3, 
+    - (392, 816, 277, 676)#
+    - (minX, maxX, minY, maxY) = (392, 816, 277, 676)
+
+
+- Processing Pipeline:
+
+    - First crop. 
+    - Then Resize.
+    - Then pass through the pretrained model, to obtain segmentation masks
+    - Binarize the segmentation masks, the bounding box label should display the contrast of the feature
+    - Then using some algorithm track the particle.
+
 ## Preparation of the dataset
 
 - Each cropped frame is then processed using the napari 
